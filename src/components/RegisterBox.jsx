@@ -4,8 +4,9 @@ import RegisterDetail from './RegisterDetail';
 import { getUser } from '../hooks/get-user';
 import { useForm } from "react-hook-form"
 import { joiResolver } from '@hookform/resolvers/joi';
-import { useState } from 'react';
-import { toast } from 'react-toastify';
+// import { useState } from 'react';
+// import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -18,35 +19,22 @@ const registerSchema = Joi.object({
 
 
 export default function RegisterBox() {
-    
-    // const [error, setError] = useState()
-
     const { registerAPI } = getUser();
-
+    const Navigate = useNavigate();
     const { register, handleSubmit, formState: { errors, } ,setError } = useForm({
         resolver: joiResolver(registerSchema)
     })
-    // console.log(input)
-
-    // const handleChangeInput = e => {
-    //     setInput({ ...input, [e.target.name]: e.target.value });
-    // };
-
     const handleSubmitForm = formData => {
-        // e.preventDefault();
         console.log(formData)
         registerAPI(formData)
-            .then(rs => {
-                return rs
-
+            .then(() => {
+                alert('Registed')
+                return Navigate("/")
             })
             .catch(err => {
                 setError(err.response?.data.fieldError ,{
                     type:'custom' ,  message: err.response?.data.message
-                })
-                toast.error(err.response?.data.message)
-                // errors(err => console.log(err.response?.data.error || err.message))
-            });
+                })});
     };
     return <form className="flex flex-col gap-2 p-10 "
         onSubmit={handleSubmit(handleSubmitForm)}

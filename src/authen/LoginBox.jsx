@@ -1,14 +1,13 @@
-import { useState } from "react";
 import Modal from "../components/Modal";
+// import { getUser } from "../hooks/get-user";
 import LoginForm from "./LoginForm";
 
-export default function LoginBox(){
-    const [open,setOpen] = useState(false);
-    return(
-        <div className ="flex justify-center">
-            <Modal>
-                <LoginForm/>
-            </Modal>
-        </div>
+export default function LoginBox({ onClose }) {
+    return (<>
+        <Modal className="absolute" onClose={onClose} >
+            <LoginForm onClose={onClose}/>
+            
+        </Modal>
+    </>
     )
 }

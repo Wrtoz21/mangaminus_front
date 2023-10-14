@@ -1,10 +1,11 @@
-import MangaAll from "./MangnaAll";
-import Poppular from "./PoppularPage";
+import Footer from "./Footer";
+import MangaAll from "./MangaAll";
+
 
 export default function HomePage(){
-    return (<div>
-        <Poppular/>
+    return (<div className='flex'>
         <MangaAll/>
+        <Footer/>
         <div></div>
         <div></div>
     </div>)

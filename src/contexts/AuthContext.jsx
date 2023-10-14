@@ -1,6 +1,6 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import axios from "../config/axios";
-import { addAccessToken } from "../utils/local-storage";
+import { addAccessToken, getAccessToken, removeAccessToken } from "../utils/local-storage";
 
 export const AuthContext = createContext();
 
@@ -8,33 +8,39 @@ export const AuthContext = createContext();
 
 
 export default function AuthContextProvider({children}){
-
-    const [getUser,setGetUser] = useState(null); //authUser
-
-    // useEffect(() =>{
-    //     if(getAccessToken()){
-    //         axios
-    //         .get('/user/me')
-    //         .then(res =>{
-    //             setGetUser(res.data.user)
-    //         })
-
-    //     }
-    // })
-
+    const [authUser,setAuthUser] = useState(null); //authUser
+    const [initialLoading,setInitialLoading] = useState(true)
+    useEffect(() =>{
+        if(getAccessToken()){
+            axios
+            .get('/user/me')
+            .then(res =>{
+                setAuthUser(res.data.user)
+            })
+            .finally(() =>{
+                setInitialLoading(false)
+            })
+        }else{
+            setInitialLoading(false)
+        }
+    },[])
     const registerAPI = async registerDataObject => {
         const res = await axios.post('/user/register',registerDataObject);
-        setGetUser(res.data.user)
+        setAuthUser(res.data.user)
         // console.log(res)
         
     }
     const login = async userCredential => {
         const res = await axios.post('/user/login',userCredential)
-        addAccessToken(res.data.addAccessToken)
-        setGetUser(res.data.user)
-        // console.log(res)
+        addAccessToken(res.data.accessToken)
+        setAuthUser(res.data.user)
+    }
+
+    const logout = () => {
+        removeAccessToken();
+        setAuthUser(null)
     }
     return (
-        <AuthContext.Provider value={{registerAPI,login}}>{children}</AuthContext.Provider>
+        <AuthContext.Provider value={{registerAPI,login,authUser,logout,initialLoading}}>{children}</AuthContext.Provider>
     );
 }
