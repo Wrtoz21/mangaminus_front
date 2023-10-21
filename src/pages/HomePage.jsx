@@ -3,7 +3,7 @@ import MangaAll from "./MangaAll";
 
 
 export default function HomePage(){
-    return (<div className='flex'>
+    return (<div className='flex '>
         <MangaAll/>
         <Footer/>
         <div></div>

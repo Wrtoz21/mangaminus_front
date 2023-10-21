@@ -7,9 +7,8 @@ axios.defaults.baseURL = BACKEND_URL;
 
 axios.interceptors.request.use(config => {
     const token = getAccessToken();
-    console.log(token)
     if(token){
-        config.headers.Authorization= `Bearer ${token}`;
+         const a = config.headers.Authorization= `Bearer ${token}`;
     }
     return config
 })
@@ -18,7 +17,7 @@ axios.interceptors.response.use(
     error => {
         if(error.response.status === 401){
             removeAccessToken();
-            window.location.href ='/'
+            window.location.href ='/';
         }
         return Promise.reject(error)
     }

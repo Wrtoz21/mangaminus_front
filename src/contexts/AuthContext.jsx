@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import axios from "../config/axios";
 import { addAccessToken, getAccessToken, removeAccessToken } from "../utils/local-storage";
 
+
 export const AuthContext = createContext();
 
 
@@ -10,12 +11,18 @@ export const AuthContext = createContext();
 export default function AuthContextProvider({children}){
     const [authUser,setAuthUser] = useState(null); //authUser
     const [initialLoading,setInitialLoading] = useState(true)
+    const [admin,setAdmin] = useState([])
+    const [userWallet,setUserWallet] = useState({})
+    const [payment,setPayment] = useState([])
     useEffect(() =>{
         if(getAccessToken()){
             axios
             .get('/user/me')
             .then(res =>{
                 setAuthUser(res.data.user)
+                setAdmin(res.data.findAdmin)
+                setUserWallet(res.data.wallet)
+                setPayment(res.data.payment)
             })
             .finally(() =>{
                 setInitialLoading(false)
@@ -40,7 +47,20 @@ export default function AuthContextProvider({children}){
         removeAccessToken();
         setAuthUser(null)
     }
+
+    const uploadAPI = async data => {
+        const res = await axios.post('/coin-exchange/payment', data)
+    }
+
+    const uploadByADMIN = async input => {
+        const res = await axios.post('/admin/upload',input)
+    }
+
+    const uploadCoin = async input => {
+        const res = await axios.patch('/admin/updateUser',input)
+    }
+
     return (
-        <AuthContext.Provider value={{registerAPI,login,authUser,logout,initialLoading}}>{children}</AuthContext.Provider>
+        <AuthContext.Provider value={{registerAPI,login,authUser,logout,initialLoading,uploadAPI,admin,uploadByADMIN,uploadCoin,userWallet,payment}}>{children}</AuthContext.Provider>
     );
 }

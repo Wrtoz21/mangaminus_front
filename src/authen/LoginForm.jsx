@@ -1,21 +1,19 @@
+import { useState } from "react";
 import { getUser } from "../hooks/get-user"
 import { useForm } from "react-hook-form";
 
 export default function LoginForm(onClose) {
-
+    const [loginc,setLoginc] = useState();
     const { login } = getUser();
     const { register, handleSubmit, formState: { errors }, setError } = useForm()
 
 
-
     const handleSubmitForm = (formData, e) => {
-        e.preventDefault()
         login(formData).catch(err => {
             setError(err.response?.data.fieldError, {
                 type: 'custom', message: err.response?.data.message
             })
         })
-        reset();
 
     }
 
@@ -33,7 +31,7 @@ export default function LoginForm(onClose) {
                             {...register('username', {
                                 required: "Username is required",
                                 minLength: {
-                                    value: 6,
+                                    value: 5,
                                     message: 'Username must be at least 6 characters'
                                 }
                             })}

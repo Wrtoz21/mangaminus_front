@@ -25,7 +25,6 @@ export default function RegisterBox() {
         resolver: joiResolver(registerSchema)
     })
     const handleSubmitForm = formData => {
-        console.log(formData)
         registerAPI(formData)
             .then(() => {
                 alert('Registed')

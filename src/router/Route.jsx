@@ -5,6 +5,11 @@ import RegisterPage from '../pages/RegisterPage'
 import HomePage from '../pages/HomePage'
 import Authenticated from '../authen/Authenticated'
 import UserProfile from '../pages/UserProfile'
+import UserWallet from '../AboutUser/Userwallet'
+import CoinExchange from '../Exchange/CoinExchange'
+import ExchangeRate from '../Exchange/ExchangeRate'
+import MangaDetail from '../InsideMangaBox.jsx/MangDetail'
+import Admin from '../admin/Admin'
 
 const router = createBrowserRouter([
     {
@@ -22,8 +27,60 @@ const router = createBrowserRouter([
                         <UserProfile />
                     </Authenticated>
                 )
+            },
+            {
+                path: 'user/admin', element: (
+                    // <Authenticated>
+                    <Admin />
+                    // </Authenticated>
+                )
+            },
+            { path: '/manga-detail', element: <MangaDetail /> }
+        ],
+
+    }
+    ,
+    {
+        path: '/',
+        element: (
+            <>
+                <Layout />
+            </>
+        )
+        ,
+        children: [
+            {
+                path: 'coin-exchange',
+                element: <Authenticated>
+                    <CoinExchange />
+                </Authenticated>
             }
         ]
+
+
+
+
+    },
+    {
+        path: '/',
+        element: (
+            <>
+                <Layout />
+            </>
+        )
+        ,
+        children: [
+            {
+                path: 'exchange-rate',
+                element: 
+                    <ExchangeRate />
+                
+            }
+        ]
+
+
+
+
     }
 
 ])

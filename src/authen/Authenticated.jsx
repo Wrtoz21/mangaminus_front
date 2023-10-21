@@ -5,8 +5,8 @@ export default function Authenticated({children})
 {
     const {authUser} = getUser()
 
-    // if(!authUser){
-    //     return <Navigate to ="/"/>
-    // }
+    if(!authUser){
+        return <Navigate to ="/"/>
+    }
     return children
 }
