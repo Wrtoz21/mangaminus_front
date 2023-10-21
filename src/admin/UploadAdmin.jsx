@@ -4,6 +4,8 @@ import AddImageCover from "./AddImageCover";
 import AddMangaName from "./AddMangaName";
 import AddMangaPage from "./AddMangaPage";
 import AddPrice from "./AddPrice";
+import AddWriter from "./AddWriter";
+import AddDiscribe from "./AddDiscribe";
 
 export default function UploadAdmin() {
 
@@ -14,6 +16,8 @@ export default function UploadAdmin() {
     const [uploadPic, setUploadPic] = useState({})
     const [uploadPicPage, setUploadPicPage] = useState({})
 
+
+
     const uploadAdmin = async e => {
         e.preventDefault()
         try {
@@ -21,11 +25,12 @@ export default function UploadAdmin() {
 
             const formData = new FormData();
 
+            formData.append("writerName", uploadField.writerName)
+            formData.append("discribe", uploadField.discribe)
             formData.append("mangaName", uploadField.name)
             formData.append("mangaPrice", uploadField.price)
             formData.append('mangaPic', uploadPic)
-            formData.append('mangaPicPage', uploadPicPage)
-
+            formData.append("mangaPicPage", uploadPicPage);
             await uploadByADMIN(formData).then(() => {
                 alert('Upload success')
             })
@@ -33,11 +38,17 @@ export default function UploadAdmin() {
             console.log(error)
         }
     }
-    
+    console.log(uploadField)
     return <div className="bg-slate-400 border border-black flex gap-2 text-xl p-2" >
         <form
             onSubmit={uploadAdmin}
             className="flex flex-col min-w-fit border border-black rounded-md">
+            <div className="flex flex-col gap-2 p-2 justify-start">
+                <AddWriter uploadField={uploadField}
+                    setUploadField={setUploadField} />
+                <AddDiscribe uploadField={uploadField}
+                    setUploadField={setUploadField} />
+            </div>
             <div className="flex gap-2 p-2 ">
                 <AddMangaName uploadField={uploadField}
                     setUploadField={setUploadField} />
