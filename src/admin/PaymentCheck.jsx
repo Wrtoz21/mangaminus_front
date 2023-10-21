@@ -4,7 +4,6 @@ export default function PaymentCheck() {
 
     const { admin, payment } = getUser()
     // console.log(payment[0].paymentImage)
-    console.log(admin)
     return <div>
         <div>
             {admin.map((e) => {

@@ -1,6 +1,5 @@
 
 export default function AddImageCover({uploadPic,setUploadPic}) {
-    console.log(<input/>)
     return (<div className="flex gap-2 justify-start items-center p-2 "> 
         <div>AddImageCover</div>
         <input

@@ -1,7 +1,6 @@
 
 export default function AddPrice(props) {
     const {uploadField,setUploadField} = props
-    console.log(props)
     return (<div className="flex gap-2 justify-center items-center">
 
         <div>Price</div>

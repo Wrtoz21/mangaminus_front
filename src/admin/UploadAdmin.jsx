@@ -33,7 +33,7 @@ export default function UploadAdmin() {
             console.log(error)
         }
     }
-
+    
     return <div className="bg-slate-400 border border-black flex gap-2 text-xl p-2" >
         <form
             onSubmit={uploadAdmin}

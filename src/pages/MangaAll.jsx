@@ -1,27 +1,10 @@
+import { useEffect } from "react"
+import { getUser } from "../hooks/get-user";
 import MangaBox from "../InsideMangaBox.jsx/MangaBox"
+import axios from "../config/axios";
 
-export default function MangaAll(){
-    return (<div className='grid grid-cols-5 md:grid-rows-6   m-10'>
-        <MangaBox/>
-        
-        <MangaBox/>
-        <MangaBox/>
-        <MangaBox/>
-        <MangaBox/>
-        <MangaBox/>
-        <MangaBox/>
-        <MangaBox/>
-        <MangaBox/>
-        <MangaBox/>
-        <MangaBox/>
-        <MangaBox/>
-        <MangaBox/>
-        <MangaBox/>
-        <MangaBox/>
-        <MangaBox/>
-        <MangaBox/>
-        <MangaBox/>
-        <MangaBox/>
-        <MangaBox/>
-    </div>)
+export default function MangaAll() {
+
+    
+    return (<></>)
 }

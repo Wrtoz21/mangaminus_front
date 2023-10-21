@@ -5,7 +5,7 @@ export default function AddMangaPage({uploadPicPage,setUploadPicPage}) {
         <div>Page</div>
         <input
             className="p-1"
-            type="file" multiple
+            type="file" 
             placeholder="MangaPage"
             onChange = {e => {
                 if(e.target.files[0]) {

@@ -8,7 +8,6 @@ export default function ProfileInfo({ profileUser, wallet }) {
     const handleOnclick = () => {
         return navigate('/coin-exchange')
     }
-    console.log(wallet)
     return <>
         <div className='flex flex-col  items-center text-2xl p-3 gap-2 '>
             <div className='flex flex-col border border-black p-5 w-96 gap-3 bg-orange-300'>
