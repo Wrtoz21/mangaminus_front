@@ -28,7 +28,7 @@ export default function UploadAdmin() {
             formData.append("writerName", uploadField.writerName)
             formData.append("discribe", uploadField.discribe)
             formData.append("mangaName", uploadField.name)
-            formData.append("mangaPrice", uploadField.price)
+            
             formData.append('mangaPic', uploadPic)
             formData.append("mangaPicPage", uploadPicPage);
             await uploadByADMIN(formData).then(() => {
@@ -38,7 +38,7 @@ export default function UploadAdmin() {
             console.log(error)
         }
     }
-    console.log(uploadField)
+
     return <div className="bg-slate-400 border border-black flex gap-2 text-xl p-2" >
         <form
             onSubmit={uploadAdmin}
@@ -60,8 +60,6 @@ export default function UploadAdmin() {
                     setUploadPic={setUploadPic} />
                 <div className="flex justify-between p-2">
 
-                    <AddMangaPage uploadPicPage={uploadPicPage}
-                        setUploadPicPage={setUploadPicPage} />
                     <button type="submit"
                         className=" w-40 bg-yellow-500 border-2 rounded-full border-teal opacity-75  shadow text-xl text-pink-darker" >
                         Upload</button>

@@ -1,7 +1,7 @@
 
 export default function AddMangaName({uploadField,setUploadField}) {
 
-    return (<div className="flex gap-2 justify-center items-center"> 
+    return (<div className="flex gap-2 "> 
         <div>Name</div>
         <input
             className="p-1"

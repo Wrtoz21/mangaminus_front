@@ -21,6 +21,7 @@ const router = createBrowserRouter([
         children: [
             { path: '', element: <HomePage /> },
             { path: 'register', element: (<RegisterPage />) },
+
             {
                 path: 'user/:userProfileId', element: (
                     <Authenticated>
@@ -35,7 +36,7 @@ const router = createBrowserRouter([
                     // </Authenticated>
                 )
             },
-            { path: '/manga-detail', element: <MangaDetail /> }
+            { path: '/title/:mangaId', element: <MangaDetail /> }
         ],
 
     }
@@ -72,9 +73,9 @@ const router = createBrowserRouter([
         children: [
             {
                 path: 'exchange-rate',
-                element: 
+                element:
                     <ExchangeRate />
-                
+
             }
         ]
 

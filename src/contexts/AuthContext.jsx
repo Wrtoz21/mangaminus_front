@@ -69,9 +69,12 @@ export default function AuthContextProvider({ children }) {
     const uploadByADMIN = async input => {
         const res = await axios.post('/admin/upload', input)
     }
+    const  uploadEpisode = async input => {
+        const res = await axios.post('/admin/uploadEpisode', input)
+    }
 
     const uploadCoin = async input => {
-        const res = await axios.patch('/admin/updateUser', input)
+        const res = await axios.patch('/admin/uploadEpisode', input)
     }
 
     const downloadData = async () => {
@@ -85,6 +88,6 @@ export default function AuthContextProvider({ children }) {
 
 
     return (
-        <AuthContext.Provider value={{ registerAPI, login, authUser, logout, initialLoading, uploadAPI, admin, uploadByADMIN, uploadCoin, userWallet, payment,manga,downloadData }}>{children}</AuthContext.Provider>
+        <AuthContext.Provider value={{ registerAPI, login, authUser, logout, initialLoading, uploadAPI, uploadEpisode,admin, uploadByADMIN, uploadCoin, userWallet, payment,manga,downloadData }}>{children}</AuthContext.Provider>
     );
 }

@@ -35,16 +35,18 @@ export default function RegisterBox() {
                     type:'custom' ,  message: err.response?.data.message
                 })});
     };
-    return <form className="flex flex-col gap-2 p-10 "
+    return <form className="flex flex-col gap-2 p-10 bg-gray-400 text-2xl justify-center items-center"
         onSubmit={handleSubmit(handleSubmitForm)}
     >
+        <img src="/src/assets/Header_preview_rev_1.png" 
+        className = "w-52"alt="" />
         <div>
             <div>username
             </div>
 
             <input
                 placeholder="username"
-                className={'border-2 border-black focus:ring outline:none'}
+                className={'border-2 border-black focus:ring outline:none p-2 shadow-lg'}
                 // onChange={handleChangeInput}
                 //    hasError={error.username}
                 // name="username"
@@ -64,7 +66,7 @@ export default function RegisterBox() {
                 type="password"
                 placeholder="password"
                 // value={input.password}
-                className={'border-2 border-black focus:ring outline:none'}
+                className={'border-2 border-black focus:ring outline:none p-2 shadow-lg'}
                 // onChange={handleChangeInput}
                 //  hasError={error.password}
                 // name="password"
@@ -80,7 +82,7 @@ export default function RegisterBox() {
             <input
                 placeholder="email"
                 // value={input.email}
-                className={'border-2 border-black focus:ring outline:none'}
+                className={'border-2 border-black focus:ring outline:none p-2 shadow-lg'}
                 // onChange={handleChangeInput}
                 // hasError={error.email}
                 // name="email"
@@ -97,7 +99,7 @@ export default function RegisterBox() {
                 id="phone"
                 pattern="[0]{1}[6-9]{1}{0-9}-[0-9]{3}-[0-9]{4}"
                 // value={input.mobilePhone}
-                className={'border-2 border-black focus:ring outline:none'}
+                className={'border-2 border-black focus:ring outline:none p-2 shadow-lg'}
                 // onChange={handleChangeInput}
                 // hasError={error.mobilePhone}
                 // name="mobilePhone"

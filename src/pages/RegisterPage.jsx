@@ -3,10 +3,8 @@ import RegisterBox from "../components/RegisterBox";
 
 export default function RegisterPage() {
     return (<div className="flex justify-center items-center gap-4">
-        <div>
-            <Promotion />
-        </div>
-        <div>
+
+        <div className="w-9/12 ">
             <RegisterBox />
         </div>
     </div>)
