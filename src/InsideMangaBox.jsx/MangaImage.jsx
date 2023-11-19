@@ -1,17 +1,12 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { getUser } from "../hooks/get-user";
-import { useEffect } from "react";
-import axios from "../config/axios";
 
 export default function MangaImg({ e }) {
     const navigate = useNavigate()
-    const {manga} = getUser()
-
 
     return <div
         className='p-1 border border-black cursor-pointer text-xl rounded-lg h-5/6 shadow-2xl'
-        onClick={() => { return navigate(`/title/${e.id}`) } } 
-        >
+        onClick={() => { return navigate(`/title/${e.id}`) }}
+    >
         <div className="w-fit ">
             <img className="w-96 flex p-1"
                 src={e.mangaCover} alt="" />
@@ -22,7 +17,7 @@ export default function MangaImg({ e }) {
             </div>
             <hr />
             <div className="flex justify-between">
-                
+
             </div>
 
         </div>

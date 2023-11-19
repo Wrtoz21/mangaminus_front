@@ -8,8 +8,8 @@ export default function Header() {
     return (
         <Link to="/">
             <header >
-                <img className="max-h-72 w-full object-fill overflow-hidden mx-auto rounded-b-lg flex justify-center items-center"
-                src={defaultImg} 
+                <img className=" w-full object-center   "
+                src="https://res.cloudinary.com/dhepjrdz1/image/upload/v1700365884/pv7jstgb9wnw5slagf79.png"
                 alt="MangaMinusHeader" />
             </header>
         </Link>

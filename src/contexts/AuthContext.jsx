@@ -6,8 +6,6 @@ import { addAccessToken, getAccessToken, removeAccessToken } from "../utils/loca
 export const AuthContext = createContext();
 
 
-
-
 export default function AuthContextProvider({ children }) {
     const [authUser, setAuthUser] = useState(null); //authUser
     const [initialLoading, setInitialLoading] = useState(true)
@@ -15,6 +13,7 @@ export default function AuthContextProvider({ children }) {
     const [manga, setManga] = useState([])
     const [userWallet, setUserWallet] = useState({})
     const [payment, setPayment] = useState([])
+    const [userUpdated,setUserUpdated] = useState({})
     useEffect(() => {
         if (getAccessToken()) {
             axios
@@ -70,11 +69,15 @@ export default function AuthContextProvider({ children }) {
         const res = await axios.post('/admin/upload', input)
     }
     const  uploadEpisode = async input => {
+        input.forEach((value,key) => {
+            console.log(key+" "+value)
+          });
         const res = await axios.post('/admin/uploadEpisode', input)
     }
 
     const uploadCoin = async input => {
-        const res = await axios.patch('/admin/uploadEpisode', input)
+        const res = await axios.patch('/admin/updateUser', input)
+    setUserUpdated(res.data)
     }
 
     const downloadData = async () => {
@@ -85,9 +88,16 @@ export default function AuthContextProvider({ children }) {
             console.error(error);
         }
     };
+    const searchMangaName = async input =>{
+        const res = await axios.get('/manga/:mangaName')
+    }
+    const deleteManga = async input =>{
+        const res = await axios.delete('/addmin/delete-manga')
+        console.log(res)
+    }
 
 
     return (
-        <AuthContext.Provider value={{ registerAPI, login, authUser, logout, initialLoading, uploadAPI, uploadEpisode,admin, uploadByADMIN, uploadCoin, userWallet, payment,manga,downloadData }}>{children}</AuthContext.Provider>
+        <AuthContext.Provider value={{ deleteManga,searchMangaName, userUpdated, registerAPI, login, authUser, logout, initialLoading, uploadAPI, uploadEpisode,admin, uploadByADMIN, uploadCoin, userWallet, payment,manga,downloadData }}>{children}</AuthContext.Provider>
     );
 }
